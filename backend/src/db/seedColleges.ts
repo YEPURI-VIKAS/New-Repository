@@ -1,0 +1,259 @@
+export type College = {
+  id: string;
+  name: string;
+  location: string;
+  fees: number; // INR per year
+  rating: number; // 0-5
+  placement: number; // percentage
+  courses: string[];
+  image: string;
+  description: string;
+};
+
+/**
+ * Mock dataset (20 colleges). This is used when Postgres isn’t connected yet.
+ * IDs are stable slugs so routes `/college/[id]` work consistently.
+ */
+export const SEED_COLLEGES: College[] = [
+  {
+    id: "iit-delhi",
+    name: "Indian Institute of Technology Delhi (IIT Delhi)",
+    location: "New Delhi, Delhi",
+    fees: 200000,
+    rating: 4.8,
+    placement: 97,
+    courses: ["Computer Science Engineering", "Electrical Engineering", "Mechanical Engineering", "Civil Engineering", "Management (MBA)"],
+    image: "https://source.unsplash.com/featured/800x500?campus%20iit%20delhi",
+    description:
+      "IIT Delhi is known for rigorous academics, strong research culture, and consistently high placement outcomes across top engineering and interdisciplinary programs.",
+  },
+  {
+    id: "iit-bombay",
+    name: "Indian Institute of Technology Bombay (IIT Bombay)",
+    location: "Mumbai, Maharashtra",
+    fees: 205000,
+    rating: 4.9,
+    placement: 98,
+    courses: ["Computer Science Engineering", "Electrical Engineering", "Mechanical Engineering", "Chemical Engineering", "Management (MBA)"],
+    image: "https://source.unsplash.com/featured/800x500?campus%20iit%20bombay",
+    description:
+      "IIT Bombay combines strong technical depth with a vibrant campus ecosystem, resulting in excellent recruiting outcomes and a wide range of course options.",
+  },
+  {
+    id: "iit-madras",
+    name: "Indian Institute of Technology Madras (IIT Madras)",
+    location: "Chennai, Tamil Nadu",
+    fees: 210000,
+    rating: 4.9,
+    placement: 97,
+    courses: ["Computer Science Engineering", "Electrical Engineering", "Data Science", "Mechanical Engineering", "Management (MBA)"],
+    image: "https://source.unsplash.com/featured/800x500?campus%20iit%20madras",
+    description:
+      "IIT Madras is highly regarded for engineering excellence and research-led learning, with strong placements year after year.",
+  },
+  {
+    id: "nit-trichy",
+    name: "National Institute of Technology Tiruchirappalli (NIT Trichy)",
+    location: "Tiruchirappalli, Tamil Nadu",
+    fees: 145000,
+    rating: 4.6,
+    placement: 92,
+    courses: ["Computer Science Engineering", "Electronics & Communication", "Mechanical Engineering", "Civil Engineering", "Electrical Engineering"],
+    image: "https://source.unsplash.com/featured/800x500?campus%20nit%20trichy",
+    description:
+      "NIT Trichy offers a strong balance of core engineering and modern disciplines, with high employability and well-established industry partnerships.",
+  },
+  {
+    id: "bits-pilani",
+    name: "Birla Institute of Technology and Science Pilani (BITS Pilani)",
+    location: "Pilani, Rajasthan",
+    fees: 350000,
+    rating: 4.7,
+    placement: 94,
+    courses: ["Computer Science", "Electronics", "Mechanical Engineering", "Chemical Engineering", "Economics (Economics & Finance)"],
+    image: "https://source.unsplash.com/featured/800x500?campus%20bits%20pilani",
+    description:
+      "BITS Pilani is recognized for quality teaching, strong industry exposure, and outcomes that consistently attract leading recruiters.",
+  },
+  {
+    id: "vit-vellore",
+    name: "Vellore Institute of Technology (VIT Vellore)",
+    location: "Vellore, Tamil Nadu",
+    fees: 300000,
+    rating: 4.5,
+    placement: 91,
+    courses: ["Computer Science Engineering", "Artificial Intelligence & Data Science", "Electronics & Communication", "Mechanical Engineering", "Civil Engineering"],
+    image: "https://source.unsplash.com/featured/800x500?campus%20vit%20vellore",
+    description:
+      "VIT Vellore is known for a broad curriculum, modern labs, and an industry-focused approach that supports strong placement performance.",
+  },
+  {
+    id: "srm-university",
+    name: "SRM Institute of Science and Technology (SRM)",
+    location: "Kattankulathur, Tamil Nadu",
+    fees: 280000,
+    rating: 4.4,
+    placement: 88,
+    courses: ["Computer Science Engineering", "Information Technology", "Electronics Engineering", "Mechanical Engineering", "Business Analytics"],
+    image: "https://source.unsplash.com/featured/800x500?campus%20srm%20university",
+    description:
+      "SRM provides a career-oriented learning environment with industry-backed projects and dependable placement cycles.",
+  },
+  {
+    id: "kl-university",
+    name: "KL Deemed to be University (KL University)",
+    location: "Vaddeswaram, Andhra Pradesh",
+    fees: 190000,
+    rating: 4.2,
+    placement: 82,
+    courses: ["Computer Science Engineering", "Artificial Intelligence & Machine Learning", "Mechanical Engineering", "Civil Engineering", "Electrical & Electronics Engineering"],
+    image: "https://source.unsplash.com/featured/800x500?campus%20kl%20university",
+    description:
+      "KL University offers a strong academic foundation and a growing ecosystem of internships and industry collaborations.",
+  },
+  {
+    id: "andhra-university",
+    name: "Andhra University",
+    location: "Visakhapatnam, Andhra Pradesh",
+    fees: 110000,
+    rating: 4.1,
+    placement: 78,
+    courses: ["Computer Science", "Electronics & Communication", "Mechanical Engineering", "MBA", "Mathematics & Computing"],
+    image: "https://source.unsplash.com/featured/800x500?campus%20andhra%20university",
+    description:
+      "Andhra University is a long-established institution with strong programs in engineering and management, supporting steady career outcomes.",
+  },
+  {
+    id: "jntu-hyderabad",
+    name: "JNTU Hyderabad (Jawaharlal Nehru Technological University)",
+    location: "Hyderabad, Telangana",
+    fees: 125000,
+    rating: 4.2,
+    placement: 84,
+    courses: ["Computer Science Engineering", "Information Technology", "Electrical Engineering", "Electronics Engineering", "Civil Engineering"],
+    image: "https://source.unsplash.com/featured/800x500?campus%20jntu%20hyderabad",
+    description:
+      "JNTU Hyderabad is known for engineering depth, strong campus placements, and a wide array of undergraduate and postgraduate pathways.",
+  },
+  {
+    id: "nit-warangal",
+    name: "National Institute of Technology Warangal (NIT Warangal)",
+    location: "Warangal, Telangana",
+    fees: 140000,
+    rating: 4.5,
+    placement: 90,
+    courses: ["Computer Science Engineering", "Electrical Engineering", "Mechanical Engineering", "Civil Engineering", "Metallurgical & Materials Engineering"],
+    image: "https://source.unsplash.com/featured/800x500?campus%20nit%20warangal",
+    description:
+      "NIT Warangal offers strong core engineering programs and consistently good employer interest across technical roles.",
+  },
+  {
+    id: "nit-surathkal",
+    name: "National Institute of Technology Karnataka (NITK Surathkal)",
+    location: "Surathkal, Karnataka",
+    fees: 135000,
+    rating: 4.4,
+    placement: 89,
+    courses: ["Computer Science Engineering", "Electronics & Communication", "Mechanical Engineering", "Civil Engineering", "Information Technology"],
+    image: "https://source.unsplash.com/featured/800x500?campus%20nit%20surathkal",
+    description:
+      "NITK Surathkal is recognized for strong academics, excellent campus culture, and good placement outcomes in engineering and IT.",
+  },
+  {
+    id: "dtu-delhi",
+    name: "Delhi Technological University (DTU)",
+    location: "Delhi, Delhi",
+    fees: 120000,
+    rating: 4.3,
+    placement: 86,
+    courses: ["Computer Engineering", "Electrical Engineering", "Mechanical Engineering", "Civil Engineering", "Management (MBA)"],
+    image: "https://source.unsplash.com/featured/800x500?campus%20dtu%20delhi",
+    description:
+      "DTU focuses on practical learning and industry-ready skills, with solid recruiter participation and consistent job outcomes.",
+  },
+  {
+    id: "iiit-hyderabad",
+    name: "International Institute of Information Technology Hyderabad (IIIT Hyderabad)",
+    location: "Hyderabad, Telangana",
+    fees: 280000,
+    rating: 4.6,
+    placement: 93,
+    courses: ["Computer Science", "Cybersecurity", "Artificial Intelligence", "Information Technology", "Electronics & Communication"],
+    image: "https://source.unsplash.com/featured/800x500?campus%20iiit%20hyderabad",
+    description:
+      "IIIT Hyderabad is a top destination for computing and data-focused programs, with high placement efficiency and tech-first learning.",
+  },
+  {
+    id: "manipal-mit",
+    name: "Manipal Institute of Technology (MIT Manipal)",
+    location: "Manipal, Karnataka",
+    fees: 210000,
+    rating: 4.3,
+    placement: 87,
+    courses: ["Computer Science", "Mechanical Engineering", "Electronics & Communication", "Civil Engineering", "MBA (Operations/Tech)"],
+    image: "https://source.unsplash.com/featured/800x500?campus%20mit%20manipal",
+    description:
+      "MIT Manipal provides strong engineering fundamentals and industry-linked projects, leading to reliable placement results.",
+  },
+  {
+    id: "pes-university",
+    name: "PES University",
+    location: "Bengaluru, Karnataka",
+    fees: 190000,
+    rating: 4.2,
+    placement: 83,
+    courses: ["Computer Science Engineering", "Information Science", "Electronics Engineering", "Cybersecurity", "Data Science & Analytics"],
+    image: "https://source.unsplash.com/featured/800x500?campus%20pes%20university",
+    description:
+      "PES University is known for modern computing programs, active student clubs, and strong industry connections for internships and jobs.",
+  },
+  {
+    id: "thapar",
+    name: "Thapar Institute of Engineering & Technology",
+    location: "Patiala, Punjab",
+    fees: 250000,
+    rating: 4.3,
+    placement: 85,
+    courses: ["Computer Science & Engineering", "Mechanical Engineering", "Electrical Engineering", "Electronics & Communication", "Management (MBA)"],
+    image: "https://source.unsplash.com/featured/800x500?campus%20thapar%20institute",
+    description:
+      "Thapar offers an academically rigorous environment with industry-aligned curriculum and consistent placement opportunities.",
+  },
+  {
+    id: "iiit-bangalore",
+    name: "International Institute of Information Technology Bangalore (IIIT Bangalore)",
+    location: "Bengaluru, Karnataka",
+    fees: 250000,
+    rating: 4.5,
+    placement: 91,
+    courses: ["Computer Science", "Information Technology", "Artificial Intelligence", "Cybersecurity", "Electronics & Communication"],
+    image: "https://source.unsplash.com/featured/800x500?campus%20iiit%20bangalore",
+    description:
+      "IIIT Bangalore focuses on high-impact computing education with research opportunities and strong recruiting outcomes in tech roles.",
+  },
+  {
+    id: "nit-calicut",
+    name: "National Institute of Technology Calicut (NIT Calicut)",
+    location: "Kozhikode, Kerala",
+    fees: 138000,
+    rating: 4.4,
+    placement: 88,
+    courses: ["Computer Science Engineering", "Electrical Engineering", "Electronics & Communication", "Mechanical Engineering", "Civil Engineering"],
+    image: "https://source.unsplash.com/featured/800x500?campus%20nit%20calicut",
+    description:
+      "NIT Calicut is widely respected for engineering education, student research, and strong placement outcomes across core and IT fields.",
+  },
+  {
+    id: "iit-guwahati",
+    name: "Indian Institute of Technology Guwahati (IIT Guwahati)",
+    location: "Guwahati, Assam",
+    fees: 205000,
+    rating: 4.6,
+    placement: 92,
+    courses: ["Computer Science Engineering", "Mechanical Engineering", "Electrical Engineering", "Chemical Engineering", "Data Science"],
+    image: "https://source.unsplash.com/featured/800x500?campus%20iit%20guwahati",
+    description:
+      "IIT Guwahati offers a strong engineering and analytics foundation with research-driven learning and consistently good placement results.",
+  },
+];
+

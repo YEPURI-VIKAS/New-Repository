@@ -1,0 +1,5 @@
+# Ignore backend service and deployment metadata when deploying the frontend to Vercel
+/backend
+/backend/**
+/render.yaml
+.env*

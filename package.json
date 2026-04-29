@@ -1,0 +1,17 @@
+{
+  "name": "college-discovery-platform",
+  "private": true,
+  "workspaces": [
+    "frontend",
+    "backend"
+  ],
+  "scripts": {
+    "dev": "concurrently -n frontend,backend \"npm run dev --prefix frontend\" \"npm run dev --prefix backend\"",
+    "build": "concurrently -n frontend,backend \"npm run build --prefix frontend\" \"npm run build --prefix backend\"",
+    "start": "concurrently -n frontend,backend \"npm run start --prefix backend\" \"npm run start --prefix frontend\""
+  },
+  "devDependencies": {
+    "concurrently": "^9.0.0"
+  }
+}
+
